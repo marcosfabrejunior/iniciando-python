@@ -7,7 +7,8 @@ total_tentativas = 3
 rodada = 1
 
 # while - início
-while(rodada <= total_tentativas):
+# while(rodada <= total_tentativas):
+for rodada in range(1, total_tentativas + 1):
     print("Tentativa {} de {} ".format(rodada,total_tentativas))
     chute = input("Digite um número: \n")
     chute = int(chute)
@@ -21,5 +22,5 @@ while(rodada <= total_tentativas):
             print("Você errou, o seu chute foi maior que o número secreto")
         elif(chute < numero_secreto):
             print("Você errou, o seu chute foi menor que o número secreto")
-    rodada = rodada + 1
 # while - fim
+
