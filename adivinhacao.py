@@ -6,10 +6,14 @@ numero_secreto = 42
 total_tentativas = 3
 rodada = 1
 
+# função format()
+print("R$ {:07.2f}".format(1.38))
+
+
 # while - início
 # while(rodada <= total_tentativas):
 for rodada in range(1, total_tentativas + 1):
-    print("Tentativa {} de {} ".format(rodada,total_tentativas))
+    print("Tentativa {0} de {1} ".format(rodada,total_tentativas))
     chute = input("Digite um número entre 1 e 100: \n")
     chute = int(chute)
 
