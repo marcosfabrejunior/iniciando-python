@@ -2,12 +2,16 @@ print("**********************************")
 print("*bem vindo ao jogo de adivinhação*")
 print("**********************************")
 
-numero_secreto = 42
+import random
+
+
+
+numero_secreto = round(random.random() * 100)
 total_tentativas = 3
 rodada = 1
 
 # função format()
-print("R$ {:07.2f}".format(1.38))
+# print("R$ {:07.2f}".format(1.38))
 
 
 # while - início
