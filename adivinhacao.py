@@ -51,7 +51,7 @@ def jogar():
         if(numero_secreto == chute):
             print("Você acertou e fez {}".format(pontos))
             break
-        else: 
+        else:  
             if(chute > numero_secreto):
                 print("Você errou, o seu chute foi maior que o número secreto")
             elif(chute < numero_secreto):
