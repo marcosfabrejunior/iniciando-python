@@ -80,6 +80,7 @@ def maximiza_lucro():
                 x[0] = a
                 x[1] = b
                 if(lucro_max(coef,x, count) > maior_lucro):
+                    maior_lucro = lucro_max(coef,x, count)
                     valores = [a,b]
     
     return valores
