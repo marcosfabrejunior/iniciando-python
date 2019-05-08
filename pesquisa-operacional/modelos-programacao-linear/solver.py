@@ -59,7 +59,7 @@ def maximiza_lucro():
 
     # descobre o valor máximo de cada coeficiente
     for i in range(count):
-        while restricoes(x[0], x[1]):
+        while restricoes(x[0], x[1]): # tornar isso generico x[n]
             x[i] = x[i] + 1  
             max[i] = x[i]
         x[i] = 0
@@ -79,6 +79,7 @@ def maximiza_lucro():
     return valores
 
 # precisa fazer uma função recursiva
-def calcula
+def solver():
+    pass
     
 print(maximiza_lucro())
