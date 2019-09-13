@@ -1,3 +1,4 @@
+# NO
 class No(object):
     def __init__(self,ponteiro,valor,esquerda=None,direita=None):
         self.ponteiro = ponteiro
@@ -5,7 +6,7 @@ class No(object):
         self.esquerda = esquerda
         self.direita = direita
     
-
+# ARVORE
 class Arvore(object):
     def __init__(self,valor):
         self.maior_indice = 0
@@ -27,7 +28,7 @@ class Arvore(object):
             else:
                 self.insere_no(no_raiz.esquerda, valor)     
             
-
+    # IMPRIMIR ARVORE
     def imprime_arvore(self):
         print(self.no_raiz.valor)
         lista_impressao = []
@@ -35,9 +36,11 @@ class Arvore(object):
         total = 7
         self.imprime_no(lista_impressao,0,total)
     
+    # IMPRIMIR NO
     def imprime_no(self,lista_impressao,cursor,total):
+        if(len(lista_impressao) == cursor):
+            return   
 
-        # parou aqui
         appends = 0
         if(lista_impressao[cursor].esquerda != None):
             lista_impressao.append(lista_impressao[cursor].esquerda)
@@ -55,45 +58,88 @@ class Arvore(object):
         else:
             print("N")
         
-        self.imprime_no(lista_impressao, cursor + appends,total)
+        self.imprime_no(lista_impressao, cursor + 1,total)
 
+    # BUSCA VALOR EM UMA ARVORE
+    def busca(self, valor,no_raiz=None, no_pai=None):
         
-    
-    # def imprime_no(self, no):
-    #     if(no.esquerda != None):
-    #         print(no.esquerda.valor)
-    #     else:
-    #         print("N")
+        if(no_raiz == None):
+            no_raiz = self.no_raiz      
 
-    #     if(no.direita != None):
-    #         print(no.direita.valor)
-    #     else:
-    #         print("N")
+        if(no_raiz.valor == valor):
+            print("Achei")
+            return no_raiz
+        elif(valor < no_raiz.valor and no_raiz.esquerda != None):
+            self.busca(valor,no_raiz.esquerda,no_pai)
+        elif(valor > no_raiz.valor and no_raiz.direita != None):
+            self.busca(valor, no_raiz.direita, no_pai)
+        else:
+            print("Não foi possível achar o valor na árvore")
+            return None
+
+    def atribui_no(self,no_pai,no, valor):
+        if(no_pai.esquerda.valor == no_remove.valor):
+            no_pai.esquerda = no
+        elif no_pai.direita.valor == no_remove.valor:
+            no_pai.direita = no
+
+
+    def remove(self, valor,no_raiz=None, no_pai=None):
+        if(no_raiz == None):
+            no_raiz = self.no_raiz
+        
+        no_remove = self.busca(valor)
+
+        # se é uma folha
+        if(no_remove.esquerda == None and no_remove.direita == None):
+            self.atribui_no(no_pai, None, valor)
             
-    #     if(no.esquerda != None):
-    #         self.imprime_no(no.esquerda)
+        # se tem um filho apenas, e na direita
+        elif(no_remove.esquerda == None and no_remove.direita != None):
+            self.atribui_no(no_pai, no_remove.direita, valor)
+
+         # se tem um filho apenas, e na esquerda
+        elif(no_remove.direita == None and no_remove.esquerda != None):
+            self.atribui_no(no_pai, no_remove.esquerda, valor)
+            
+
+
+    def remove_no(self, no, no_pai):
+        if(no_pai.esquerda.valor == no.valor):
+            no_pai.esquerda = None
+        elif no_pai.direita.valor == no.valor:
+            no_pai.direita = None
+        else:
+            print("erro")
+    
+
+
         
-    #     if(no.direita != None):
-    #         self.imprime_no(no.direita)
 
 
-# arvore = Arvore(10)
-# arvore.insere_no(arvore.no_raiz,12)
-# arvore.insere_no(arvore.no_raiz,134)
-# arvore.insere_no(arvore.no_raiz,20)
-# arvore.insere_no(arvore.no_raiz,23)
-# arvore.insere_no(arvore.no_raiz,8)
-# arvore.insere_no(arvore.no_raiz,1)
-# arvore.imprime_arvore()
+
 
 
 arvore = Arvore(10)
-arvore.insere_no(arvore.no_raiz,5)
+arvore.insere_no(arvore.no_raiz,12)
+arvore.insere_no(arvore.no_raiz,134)
 arvore.insere_no(arvore.no_raiz,20)
-arvore.insere_no(arvore.no_raiz,2)
-arvore.insere_no(arvore.no_raiz,15)
-arvore.insere_no(arvore.no_raiz,21)
+arvore.insere_no(arvore.no_raiz,23)
+arvore.insere_no(arvore.no_raiz,8)
 arvore.insere_no(arvore.no_raiz,1)
 arvore.imprime_arvore()
+print("")
+arvore.busca(134)
+print("")
+arvore.imprime_arvore()
+
+# arvore = Arvore(10)
+# arvore.insere_no(arvore.no_raiz,5)
+# arvore.insere_no(arvore.no_raiz,20)
+# arvore.insere_no(arvore.no_raiz,2)
+# arvore.insere_no(arvore.no_raiz,15)
+# arvore.insere_no(arvore.no_raiz,21)
+# arvore.insere_no(arvore.no_raiz,1)
+# arvore.imprime_arvore()
 
 
