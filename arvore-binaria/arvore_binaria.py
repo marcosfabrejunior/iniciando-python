@@ -68,51 +68,63 @@ class Arvore(object):
 
         if(no_raiz.valor == valor):
             print("Achei")
-            return no_raiz
+            retorno = []
+            retorno.append(no_raiz)
+            retorno.append(no_pai)
+            return retorno
         elif(valor < no_raiz.valor and no_raiz.esquerda != None):
-            self.busca(valor,no_raiz.esquerda,no_pai)
+            return self.busca(valor,no_raiz.esquerda,no_pai)
         elif(valor > no_raiz.valor and no_raiz.direita != None):
-            self.busca(valor, no_raiz.direita, no_pai)
+            return self.busca(valor, no_raiz.direita, no_pai)
         else:
             print("Não foi possível achar o valor na árvore")
             return None
-
-    def atribui_no(self,no_pai,no, valor):
-        if(no_pai.esquerda.valor == no_remove.valor):
-            no_pai.esquerda = no
-        elif no_pai.direita.valor == no_remove.valor:
-            no_pai.direita = no
-
-
-    def remove(self, valor,no_raiz=None, no_pai=None):
-        if(no_raiz == None):
-            no_raiz = self.no_raiz
-        
-        no_remove = self.busca(valor)
-
-        # se é uma folha
-        if(no_remove.esquerda == None and no_remove.direita == None):
-            self.atribui_no(no_pai, None, valor)
-            
-        # se tem um filho apenas, e na direita
-        elif(no_remove.esquerda == None and no_remove.direita != None):
-            self.atribui_no(no_pai, no_remove.direita, valor)
-
-         # se tem um filho apenas, e na esquerda
-        elif(no_remove.direita == None and no_remove.esquerda != None):
-            self.atribui_no(no_pai, no_remove.esquerda, valor)
-            
-
-
-    def remove_no(self, no, no_pai):
-        if(no_pai.esquerda.valor == no.valor):
-            no_pai.esquerda = None
-        elif no_pai.direita.valor == no.valor:
-            no_pai.direita = None
+    
+    #BUSCA O MENOR NO DA SUBARVORE
+    def busca_menor(self, no_raiz, no_pai = None):
+        if(no_raiz.esquerda != None):
+            return no_raiz
         else:
-            print("erro")
+            return self.busca_menor(no_raiz.esquerda, no_raiz)
+        
     
 
+    def remove(self, valor):
+        no_remove = self.busca(valor)
+        
+        # verifica se é folha
+        if(no_remove[0].direita == None and no_remove[0].esquerda == None):
+            #se o valor do filho é maior que o do pai
+            if(no_remove[0].valor > no_remove[1].valor):
+                no_remove[1].direita = None
+            else:
+                no_remove[1].esquerda = None
+        
+        # se tem um filho a direita
+        if(no_remove[0].direita != None and no_remove[0].esquerda == None):
+            #se o valor do filho é maior que o do pai
+            if(no_remove[0].valor > no_remove[1].valor):
+                no_remove[1].direita = no_remove[0].direita
+            else:
+                no_remove[1].esquerda = no_remove[0].direita
+        
+        # se tem um filho a esquerda
+        if(no_remove[0].direita == None and no_remove[0].esquerda != None):
+            #se o valor do filho é maior que o do pai
+            if(no_remove[0].valor > no_remove[1].valor):
+                no_remove[1].direita = no_remove[0].esquerda
+            else:
+                no_remove[1].esquerda = no_remove[0].esquerda
+        
+
+        # se tem dois filhos
+        if(no_remove[0].direita != None and no_remove[0].esquerda != None):
+            menor = self.busca_menor(no_remove[0].direita, no_remove[0])
+            print(menor.valor)
+
+        
+
+        
 
         
 
@@ -127,11 +139,12 @@ arvore.insere_no(arvore.no_raiz,20)
 arvore.insere_no(arvore.no_raiz,23)
 arvore.insere_no(arvore.no_raiz,8)
 arvore.insere_no(arvore.no_raiz,1)
-arvore.imprime_arvore()
+# arvore.imprime_arvore()
 print("")
-arvore.busca(134)
+# arvore.busca(134)
+arvore.remove(1)
 print("")
-arvore.imprime_arvore()
+# arvore.imprime_arvore()
 
 # arvore = Arvore(10)
 # arvore.insere_no(arvore.no_raiz,5)
