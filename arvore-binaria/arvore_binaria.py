@@ -73,9 +73,9 @@ class Arvore(object):
             retorno.append(no_pai)
             return retorno
         elif(valor < no_raiz.valor and no_raiz.esquerda != None):
-            return self.busca(valor,no_raiz.esquerda,no_pai)
+            return self.busca(valor,no_raiz.esquerda,no_raiz)
         elif(valor > no_raiz.valor and no_raiz.direita != None):
-            return self.busca(valor, no_raiz.direita, no_pai)
+            return self.busca(valor, no_raiz.direita, no_raiz)
         else:
             print("Não foi possível achar o valor na árvore")
             return None
@@ -118,9 +118,9 @@ class Arvore(object):
         
 
         # se tem dois filhos
-        if(no_remove[0].direita != None and no_remove[0].esquerda != None):
-            menor = self.busca_menor(no_remove[0].direita, no_remove[0])
-            print(menor.valor)
+        # if(no_remove[0].direita != None and no_remove[0].esquerda != None):
+        #     menor = self.busca_menor(no_remove[0].direita, no_remove[0])
+        #     print(menor.valor)
 
         
 
@@ -139,12 +139,12 @@ arvore.insere_no(arvore.no_raiz,20)
 arvore.insere_no(arvore.no_raiz,23)
 arvore.insere_no(arvore.no_raiz,8)
 arvore.insere_no(arvore.no_raiz,1)
-# arvore.imprime_arvore()
+arvore.imprime_arvore()
 print("")
 # arvore.busca(134)
-arvore.remove(1)
+arvore.remove(10)
 print("")
-# arvore.imprime_arvore()
+arvore.imprime_arvore()
 
 # arvore = Arvore(10)
 # arvore.insere_no(arvore.no_raiz,5)
